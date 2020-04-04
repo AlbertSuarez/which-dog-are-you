@@ -23,7 +23,31 @@
 
 ## Summary
 
-> TODO: Paste Devpost summary.
+### Inspiration
+
+This project came to my mind in order to improve the experience seen in all the Instagram filters where everything is random. With that being said, I wanted to really know which dog is the one that is most similar to me. Yeah, it's random. I know.
+
+### What it does
+
+From an image (image path or image URL), it returns the most similar dog given the [Standford Dogs dataset](https://www.kaggle.com/jessicali9530/stanford-dogs-dataset/data#). Simple and beautiful.
+
+### How I built it
+
+Using Python 3.7, Tensorflow, NMSLIB, NumPy and Pillow, it builds a similarity index where I extract the features of the input image versus the built index and get the closest one.
+
+### Challenges I ran into
+
+To be honest, I wanted to do another project (completely different from this one) in this hackathon (HackFromHome Round 2) but I got stuck after several hours and realized that was impossible. Yeah, what a pity.
+
+That's why I decided to move to this project.
+
+### Accomplishments that I'm proud of
+
+Building this random thing in less than 3 hours.
+
+### What's next for Which dog are you?
+
+A lot of things, like a beautiful UI and getting this deployed somewhere.
 
 ## Project
 

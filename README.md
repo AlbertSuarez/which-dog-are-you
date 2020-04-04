@@ -29,7 +29,33 @@ Usage of [virtualenv](https://realpython.com/blog/python/python-virtual-environm
 
 To run the pipeline, please execute the following from the root directory:
 
-1. Download the Standford Dogs dataset into `data/standford-dogs-dataset.zip`
+1. Setup virtual environment
+
+2. Install dependencies
+
+    ```bash
+    pip3 install -r requirements.lock
+    ```
+
+3. Download the [Standford Dogs dataset](https://www.kaggle.com/jessicali9530/stanford-dogs-dataset/data#) into `data/standford-dogs-dataset.zip`
+
+4. Prepare dataset
+
+    ```bash
+    python3 -m src.prepare_dataset [--images_per_race N]
+    ```
+
+5. Build similarity index
+
+    ```bash
+    python3 -m src.build
+    ```
+
+6. Run similarity search
+
+    ```bash
+    python3 -m src.run [--image_url https://example.org/image.jpg] [--image_path image.jpg] [--show]
+    ```
 
 ## Authors
 

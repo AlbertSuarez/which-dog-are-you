@@ -4,6 +4,7 @@ DATA_OUTPUT_ZIP = 'dataset_unzipped'
 DATASET_FOLDER = 'dataset'
 IMAGES_LIST_FILE_NAME = 'images.txt'
 INDEX_FILE_NAME = 'index.nmslib'
+INPUT_IMAGE_FILE_NAME = 'input_image.jpg'
 
 DEFAULT_IMAGES_PER_RACE = 1
 

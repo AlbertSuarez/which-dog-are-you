@@ -3,7 +3,8 @@ import os
 import shutil
 import requests
 
-from src import DATA_FOLDER, IMAGES_LIST_FILE_NAME, INDEX_FILE_NAME, INPUT_IMAGE_FILE_NAME
+from src import DATA_FOLDER, IMAGES_LIST_FILE_NAME, INDEX_FILE_NAME, INPUT_IMAGE_FILE_NAME, OUTPUT_IMAGE_FILE_NAME
+from src.helper import keras, index
 
 
 def parse_args():
@@ -12,17 +13,18 @@ def parse_args():
     parser.add_argument('--image_url', type=str)
     parser.add_argument('--images_list_path', type=str, default=os.path.join(DATA_FOLDER, IMAGES_LIST_FILE_NAME))
     parser.add_argument('--index_file_path', type=str, default=os.path.join(DATA_FOLDER, INDEX_FILE_NAME))
+    parser.add_argument('--input_image_path', type=str, default=os.path.join(DATA_FOLDER, INPUT_IMAGE_FILE_NAME))
+    parser.add_argument('--output_image_path', type=str, default=os.path.join(DATA_FOLDER, OUTPUT_IMAGE_FILE_NAME))
     return parser.parse_args()
 
 
-def run(image_path, image_url, images_list_path, index_file_path):
+def run(image_path, image_url, images_list_path, index_file_path, input_image_path, output_image_path):
     # Check input
     if bool(image_path) == bool(image_url):
         print('You can only specify Image Path (x)or Image URL')
         return
 
     # Get image
-    input_image_path = os.path.join(DATA_FOLDER, INPUT_IMAGE_FILE_NAME)
     if image_path:
         if not os.path.isfile(image_path):
             print(f'Image path provided does not exist: [{image_path}]')
@@ -36,7 +38,17 @@ def run(image_path, image_url, images_list_path, index_file_path):
         with open(input_image_path, 'w') as f:
             f.write(response.content)
 
+    # Extract features
+    features = keras.extract_features([input_image_path])[0]
+
+    # Search
+    index.search(features, index_file_path, images_list_path, output_image_path)
+    print(f'Image result: {output_image_path}')
+
 
 if __name__ == '__main__':
     args = parse_args()
-    run(args.image_path, args.image_url, args.images_list_path, args.index_file_path)
+    run(
+        args.image_path, args.image_url, args.images_list_path, args.index_file_path,
+        args.input_image_path, args.output_image_path
+    )

@@ -12,11 +12,11 @@ resnet50_model = InceptionV3(
 )
 
 
-def extract_features(images, images_list_path):
+def extract_features(images, images_list_path=None):
     features = list()
     images_list = list()
     for idx, image_path in enumerate(images):
-        print(f'({idx + 1}/{len(images)}: {image_path}')
+        print(f'({idx + 1}/{len(images)}): {image_path}')
         image_pillow = image.resize(image_path)
         image_input = image.image_to_numpy_array(image_pillow)
         if image_input is not None:
@@ -26,8 +26,9 @@ def extract_features(images, images_list_path):
             images_list.append(image_path)
         image_pillow.close()
     print('Done!')
-    print(f'Saving image list into {images_list_path}...')
-    with open(images_list_path, 'w') as f:
-        f.write('\n'.join(images_list))
-    print('Done!')
+    if images_list_path:
+        print(f'Saving image list into {images_list_path}...')
+        with open(images_list_path, 'w') as f:
+            f.write('\n'.join(images_list))
+        print('Done!')
     return features

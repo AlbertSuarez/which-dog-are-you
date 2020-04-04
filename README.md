@@ -9,7 +9,17 @@
 
 ## Results
 
-> TODO: Photo example to post.
+### Input
+
+<p align="center">
+  <img alt="EasyCam" src="docs/images/example_input_image.jpg" width="30%"/>
+</p>
+
+### Output
+
+<p align="center">
+  <img alt="EasyCam" src="docs/images/example_output_image.jpg" width="30%"/>
+</p>
 
 ## Summary
 

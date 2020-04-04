@@ -38,7 +38,7 @@ def run(image_path, image_url, images_list_path, index_file_path, input_image_pa
         if not response.ok:
             print(f'Image is not reachable using the given URL: [{image_url}]')
             return
-        with open(input_image_path, 'w') as f:
+        with open(input_image_path, 'wb') as f:
             f.write(response.content)
 
     # Extract features
